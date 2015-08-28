@@ -1,0 +1,427 @@
+<!DOCTYPE>
+<html>
+
+<head>
+<script src="processing.js"></script>
+
+<style>
+<font size="18" color="black" face= "Georgia"></font>
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/processing" data-processing-target="title">
+
+void setup(){
+size(700, 350);
+}
+void draw(){
+fill(25,60,170)
+}
+</script>
+<script type="text/processing" data-processing-target="mycanvas">
+//mouse over function
+/* @pjs preload="communism.png,BC.png,BN1.png,BN2.png,BN3.png,BP1.png,BP2.png,BP3.png,BP4.png,WC.png,WN1.png,WN2.png,WN3.PNG,WN4.png,WP1.png,background0.png,background1.png,background2.png,background3.png,background4.png,arrowH.png,arrow.png,chara.png,chara1.png,switch.png,door1.png,door1H.png,transpar.png,TestDialog.png,TestDialog2.png,objH1.png,objH2.png,objH3.png,objH4A.png,objH4B.png,obj1.png,obj2.png,obj3.png,obj4A.png,obj4B.png,checklistnone.png,checklistone.png,checklisttwo.png,checklistthree.png"; */ //backgroundss	
+//set  image
+PImage Bimage;//background
+PImage Limage;//button image
+PImage D1image;//door image1
+PImage DH1image;//door highlight
+PImage D2image;//door image2
+PImage DH2image;//door highlight
+PImage D3image;//door image1
+PImage Cimage;//girl one(white)
+PImage CGimage;//girl two(black)
+PImage Transpar;//transparent image
+PImage Aimage;//dialog box
+PImage O1image;//first object
+PImage O2image;//second object
+PImage O3image;//third object
+PImage O4Aimage;//fourth object   objH3.png,objH4A.png
+PImage O4Bimage;//fourth object
+PImage OH1; //Highlight
+PImage OH2; //Highlight
+PImage OH3; //Highlight
+PImage OH4A; //Highlight
+PImage OH4B;
+PImage List1;
+PImage List2;
+PImage List3;
+PImage List4;
+PImage WC;
+PImage WN1;
+PImage WN2;
+PImage WN3;
+PImage WN4;
+PImage WP1;
+PImage BC;
+PImage BN1;
+PImage BN2;
+PImage BN3;
+PImage BP1;
+PImage BP2;
+PImage BP3;
+PImage BP4;
+PImage Dia;
+//set variable
+var locate;
+var charaSwap;
+var T;
+var A;
+var StartScr;
+var D1;
+var RD;
+var NBbool;
+var NWbool;
+var PBbool;
+//set up
+void setup(){
+	size(700,250);
+	//variables
+	StartScr=false;
+	NBbool = false;
+	NWbool = false;
+	PBbool = false;
+	locate=0;
+	charaSwap=1;
+	T=0;
+	A=0;
+	//images
+	Bimage= loadImage("background1.png");
+	Limage= loadImage("switch.png");
+	List1=loadImage("checklistnone.png");
+	List2=loadImage("checklistone.png");
+	List3=loadImage("checklisttwo.png");
+	List4=loadImage("checklistthree.png");
+	D1image= loadImage("door1.png");
+	DH1image= loadImage("door1H.png")
+	D2image= loadImage("arrow.png");
+	DH2image= loadImage("arrowH.png");
+	D3image= loadImage("arrow.png");
+	Cimage= loadImage("chara.png");
+	CGimage= loadImage("chara1.png")
+	Transpar=loadImage("transpar.png");
+	Aimage= loadImage("TestDialog.png");
+	O1image= loadImage("obj1.png");
+	O2image= loadImage("obj2.png");
+	O3image= loadImage("obj3.png");
+	O4Aimage= loadImage("obj4A.png");
+	O4Bimage= loadImage("obj4B.png");
+	OH1= loadImage("objH1.png");
+	OH2= loadImage("objH2.png");
+	OH3= loadImage("objH3.png");
+	OH4A= loadImage("objH4A.png");
+	OH4B= loadImage("objH4B.png");
+	 WC=loadImage("WC.png");
+	WN1=loadImage("WN1.png");
+	WN2=loadImage("WN2.png");
+	WN3=loadImage("WN3.png");
+	WN4=loadImage("WN4.png");
+	WP1=loadImage("WP1.png");
+	BC=loadImage("BC.png");
+	BN1=loadImage("BN1.png");
+	BN2=loadImage("BN2.png");
+	BN3=loadImage("BN3.png");
+	BP1=loadImage("BP1.png");
+	BP2=loadImage("BP2.png");
+	BP3=loadImage("BP3.png");
+	BP4=loadImage("BP4.png");
+	Dia=loadImage("communism.png");
+	//objects
+	background(Bimage);
+}
+//draw
+void draw(){
+	startGame();
+	background(Bimage);
+	swap();
+	Doordraw();
+	DoorFunc();
+	TalkObj();
+	TalkFunc();
+	drawList();
+	mouseon();
+	}
+//class for a Dialogbox		
+class DialogBox{//create dialog box
+	//attrib
+	var Xpos;
+	var Ypos;
+	var img;
+	//constructer
+	DialogBox(X,Y,pic){
+	Xpos=X;
+	Ypos=Y;
+	img=pic;
+	}
+	void talk(){
+	image(img,Xpos,Ypos);
+	}
+	}
+	//actions if moue clicked
+void mouseClicked(){
+NBbool=false;
+NWbool=false;
+PBbool=false
+if(locate===0){
+if(((mouseX>=193)&&(mouseX<=479))&&((mouseY>=121)&&(mouseY<=194))){
+Bimage=loadImage("background1.png")
+locate=1
+StartScr=true
+}
+}
+else if(locate!=0){
+//click switch
+if((((mouseX>=20)&&(mouseX<=70))&&((mouseY>=200)&&(mouseY<=253)))){
+			if(charaSwap=== 0){
+					charaSwap= 1;
+			}
+			else if(charaSwap=== 1){
+				charaSwap= 0;
+			}
+		}
+//clicking the obj		
+else if((((mouseX>=300)&&(mouseX<=355))&&((mouseY>=125)&&(mouseY<=163)))&&(locate===1)){
+		if(T=== 0){
+				T= 1;
+			}
+			else if(T=== 1){
+				T= 0;
+			}
+}
+else if((((mouseX>=350)&&(mouseX<=421))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===2)){
+		if(T=== 0){
+				T= 1;
+			}
+			else if(T=== 1){
+				T= 0;
+			}
+
+}
+else if((((mouseX>=280)&&(mouseX<=351))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===3)){
+		if(T=== 0){
+				T= 1;
+			}
+			else if(T=== 1){
+				T= 0;
+			}
+}
+else if((((mouseX>=350)&&(mouseX<=421))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===4)){
+		if(T=== 0){
+				T= 1;
+			}
+			else if(T=== 1){
+				T= 0;
+			}
+}
+}
+}
+//start game
+var startGame=function(){
+	if (StartScr==false){
+		Bimage= loadImage("background0.png");
+	}
+}
+
+var mouseon=function(){
+//items
+if ((((mouseX>=300)&&(mouseX<=(355)))&&((mouseY>=125)&&(mouseY<=163)))&&(locate===1)){
+image(OH1,300,125);
+}
+else if ((((mouseX>=350)&&(mouseX<=(421)))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===2)){
+image(OH2,350,100);
+}
+else if ((((mouseX>=280)&&(mouseX<=(351)))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===3)){
+image(OH3,280,100);
+}
+else if ((((mouseX>=350)&&(mouseX<=(421)))&&((mouseY>=100)&&(mouseY<=218)))&&(locate===4)){
+if(charaSwap===1){
+image(OH4A,350,100);
+}
+else if (charaSwap===0){
+image(OH4B,350,100);
+}
+}
+//doors
+else if ((((mouseX>=100)&&(mouseX<=(164)))&&((mouseY>=75)&&(mouseY<=204)))&&(locate===1)){
+image(DH1image,100,75);
+}
+else if ((((mouseX>=440)&&(mouseX<=(488)))&&((mouseY>=100)&&(mouseY<=137)))&&(locate===2)){8
+image(DH2image,440,100);
+}
+else if ((((mouseX>=440)&&(mouseX<=(488)))&&((mouseY>=210)&&(mouseY<=247)))&&(locate===3)){
+image(DH2image,440,210);
+}
+}
+var swap= function(){
+	if(locate!=0){
+	image(Limage,20,200);
+			if(charaSwap=== 0){
+					image(Cimage,200,100);
+				//draw girl1
+			}
+			else if(charaSwap=== 1){
+					image(CGimage,200,100);
+				//draw girl 2
+			}
+}
+}
+//dialog objects
+var TalkObj=function(){
+if(locate===1){ 
+image(O1image,300,125);
+}
+else if(locate===2){
+image(O2image,350,100);
+}
+else if(locate===3){
+image(O3image,280,100);
+}
+else if(locate===4){
+if(charaSwap===1){
+image(O4Aimage,350,100);
+}
+else if (charaSwap===0){
+image(O4Bimage,350,100);
+}
+}
+}
+var TalkFunc=function(){
+	if((T===1)&&(locate===1)){
+		if(charaSwap===1){
+		D1= new DialogBox(96,213,BC);
+			D1.talk();
+			A=1
+				}
+		else if(charaSwap===0){
+		D1= new DialogBox(96,213,WC);
+			D1.talk();
+			A=1
+			}
+	}//check
+	if((T===1)&&(locate===2)){
+		if(charaSwap===1){
+		selectDialogN();
+				}
+		else if(charaSwap===0){
+		selectDialogN();
+			}
+			
+	}
+	if(locate===3){
+	A=2
+	if((T===1)&&(charaSwap===1)){
+	selectDialogP();
+			}
+	else if((T===1)&&(charaSwap===0)){
+	D1= new DialogBox(96,213,WP1);
+		D1.talk();
+		}
+	}
+	
+	if(locate===4){
+		A=3
+		if((T===1)&&(charaSwap===1)){
+			D1= new DialogBox(96,213,Dia);
+			D1.talk();
+			}
+		else if((T===1)&&(charaSwap===0)){
+		D1= new DialogBox(96,213,Dia);
+		D1.talk();
+		}
+}
+
+}
+var Doordraw=function(){
+if(locate===1){ 
+image(D1image,100,75);
+}
+else if(locate===2){
+image(D2image,440,100);
+}
+else if(locate===3){
+image(D3image,440,210);
+}
+}
+var DoorFunc=function(){
+if ((mousePressed)&&(((mouseX>=100)&&(mouseX<=164))&&((mouseY>=100))&&(mouseY<=229))&&(locate===1)){
+			D1image=Transpar;
+			Bimage= loadImage("background2.png");
+			locate=2
+}
+else if ((mousePressed)&&(((mouseX>=440)&&(mouseX<=504))&&((mouseY>=100))&&(mouseY<=196))&&(locate===2)){
+			D2image=Transpar;
+			Bimage= loadImage("background3.png");
+			locate=3
+}
+else if((mousePressed)&&(((mouseX>=440)&&(mouseX<=504))&&((mouseY>=210))&&(mouseY<=250))&&(locate===3)){
+			D3image=Transpar;
+			Bimage= loadImage("background4.png");
+			locate=4
+}
+}
+var drawList=function(){
+if (locate!=0){
+if(A===0){
+image(List1,500,0);
+}
+else if(A===1){
+image(List2,500,0);
+}
+else if(A===2){
+image(List3,500,0);
+}
+else if(A===3){
+image(List4,500,0);
+}
+}
+}
+var selectDialogN=function(){
+if(charaSwap===1){//black
+	dialogBoxesN=[BN1,BN2,BN3];
+	if(!NBbool){
+	RD=Math.floor(Math.random()*(dialogBoxesN.length));
+	D1=dialogBoxesN[RD];
+	NBbool = true;
+	}
+		image(D1,96,213);
+
+	}
+else if(charaSwap===0){//white
+dialogBoxesN=[WN1,WN2,WN3,WN4];
+if(!NWbool){
+RD=Math.floor(Math.random()*(dialogBoxesN.length));
+D1= dialogBoxesN[RD]
+NWbool=true
+}
+	image(D1,96,213);
+}
+}
+var selectDialogP=function(){
+dialogBoxesP=[BP1,BP3,BP4];
+if(!PBbool){
+RD=Math.floor(Math.random()*(dialogBoxesP.length));
+D1=dialogBoxesP[RD];
+PBbool = true;
+}
+ image(D1,96,213);
+}
+</script>
+</head>
+
+<body>
+
+<a><center><img src="commute.png"style="width:410px;height:171px;"></center></a>
+<p> </p>
+
+<div><center><canvas id="mycanvas"></canvas></center></div>
+<p>  </p>
+<p>  </p>
+
+<p><center><input Type= "button" Value="Characters" Onclick=window.location.href="Characters.html" target="_self">
+ <input Type="button" Value="Girls Who Code" Onclick="window.location.href='http://girlswhocode.com/'"> 
+<input Type= "button"  Value="About Us/About Game" Onclick=window.location.href="aboutUs.html" target="_self">
+<input Type= "button" Value="New Game" Onclick=window.location.href="Commute.html" target="_self"></center> </p>
+
+</body>
+<!--add new page -->
+</html>

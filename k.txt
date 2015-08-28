@@ -1,0 +1,6 @@
+<!DOCTYPE>
+<html>
+<head>
+<marquee> no </marquee>
+</head>
+</html>

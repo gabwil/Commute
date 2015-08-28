@@ -1,0 +1,29 @@
+Check:(change background 4) 70 cents to a dollar
+W"This is a paycheck for 616 dollars."
+B"This is a paycheck for 536 dollars."
+
+Neighbor:
+W"Your hair is lovely today"
+B"Wow is your hair real?"
+
+W"Thanks for the help, You are really smart!"
+B"Thanks for the help, You're smart for a black person."
+
+W"You look nice"
+B"You're pretty for a black girl, are you mixed?"
+
+W"Hey what's up"
+B"Yo Homeskillet biscuit what's crackalackin'."
+
+
+Police:
+W
+"DO YOU HAVE AY WEAPONS"
+*PAT DOWN*
+"do you have any drugs"
+"where are you going?"
+
+
+
+
+
